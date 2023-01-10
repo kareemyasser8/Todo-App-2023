@@ -1,10 +1,11 @@
-@mixin changeTextColor($desiredColor){
-  h2{
+@mixin changeTextColor($desiredColor) {
+  h2 {
     color: $desiredColor;
   }
 }
 
-@mixin addBackGround($url){
-  background-image: url($url);
+@mixin addBackGround($firstColor,$secondColor) {
+  background-image: linear-gradient(to bottom right, $firstColor, $secondColor);
   background-size: cover;
+
 }

@@ -8,7 +8,8 @@
 @use 'app/sass/layout/footer';
 
 
-body{
-  @include mixins.addBackGround("https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg");
+html,body{
+  height: 100%;
+  @include mixins.addBackGround(rgb(13, 13, 59),rgb(94, 94, 145));
 }
 

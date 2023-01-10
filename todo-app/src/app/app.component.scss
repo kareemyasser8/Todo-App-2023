@@ -1,10 +1,24 @@
-// @use 'sass/helpers/variables';
-// @use 'sass/helpers/functions';
-// @use 'sass/helpers/mixins';
+///All of the styling of the
+/// containers is available
+/// in the _grid.scss file
 
-// @use 'sass/components/buttons';
-// @use 'sass/layout/header';
-// @use 'sass/layout/grid';
-// @use 'sass/layout/footer';
+@use 'sass/helpers/variables';
 
-// @include mixins.changeTextColor(rgb(60, 20, 124));
+.initMessage{
+  background: rgba(black,0.5);
+  width: 220px;
+  // height: 150px;
+  padding: 30px;
+  border-radius: variables.$borderRad;
+  text-align: center;
+  color: white;
+  font: {
+    size: 15px;
+    family: variables.$appFont;
+    weight: 300;
+  }
+
+  img{
+    width:120px;
+  }
+}
