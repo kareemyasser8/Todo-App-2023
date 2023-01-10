@@ -1,0 +1,10 @@
+@mixin changeTextColor($desiredColor){
+  h2{
+    color: $desiredColor;
+  }
+}
+
+@mixin addBackGround($url){
+  background-image: url($url);
+  background-size: cover;
+}

@@ -1,0 +1,16 @@
+@use '../helpers/variables';
+@use '../helpers/mixins';
+
+
+.container {
+  margin: auto; // horizontally centered because it has margin: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  position: relative;
+
+  //   p{
+  //     color: blue;
+  //   }
+  // }
+
+}

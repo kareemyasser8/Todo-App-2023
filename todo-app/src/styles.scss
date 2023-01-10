@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'app/sass/helpers/variables';
+@use 'app/sass/helpers/functions';
+@use 'app/sass/helpers/mixins';
+
+@use 'app/sass/components/buttons';
+@use 'app/sass/layout/header';
+@use 'app/sass/layout/grid';
+@use 'app/sass/layout/footer';
+
+
+body{
+  @include mixins.addBackGround("https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg");
+}
+
