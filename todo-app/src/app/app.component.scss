@@ -4,21 +4,33 @@
 
 @use 'sass/helpers/variables';
 
-.initMessage{
-  background: rgba(black,0.5);
-  width: 220px;
-  // height: 150px;
-  padding: 30px;
-  border-radius: variables.$borderRad;
-  text-align: center;
-  color: white;
-  font: {
-    size: 15px;
-    family: variables.$appFont;
-    weight: 300;
+.initMessageContainer {
+  height: 100%;
+  // border: 1px solid green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .initMessage {
+    background: rgba(black, 0.5);
+    width: 250px;
+    max-height: 200px;
+    padding: 22px;
+    border-radius: variables.$borderRad;
+    text-align: center;
+    color: white;
+
+    font: {
+      size: 12px;
+      family: variables.$appFont;
+      weight: 300;
+    }
+
+    img {
+      width: 110px;
+    }
   }
 
-  img{
-    width:120px;
-  }
+
+
 }
