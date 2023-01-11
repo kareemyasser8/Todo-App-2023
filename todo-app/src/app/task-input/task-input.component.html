@@ -1,4 +1,15 @@
-<div class="input-container">
-  <i class="fa fa-circle-o" aria-hidden="true"></i>
-  <input type="text" placeholder="Write your task here">
-</div>
+<form class="input-container">
+    <input type="text"
+    placeholder="Write your task here"
+    name="task"
+    #taskDec="ngModel"
+    (keyup.enter)="addTask(taskDec.value)"
+    ngModel>
+</form>
+<!--
+  #taskDes is a template variable
+-->
+
+<!--ngModel w tedelo (name="task" masaln) ==> Angular will create
+   a control object and associate with
+    this input field under the hood-->
