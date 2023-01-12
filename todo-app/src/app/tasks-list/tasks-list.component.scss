@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
 
-  .task {
+  .task-tab {
     background-color: #FFF;
     font-family: Roboto;
     margin-bottom: 10px;
@@ -14,13 +14,35 @@
     border-radius: 3px;
     border: none;
     outline: none;
-    display: flex;
-    align-items: center;
+    display: block;
+    position: relative;
+    // align-items: center;
+    // flex-direction: row;
+    // flex-wrap: wrap;
     width: 97%;
     padding-left: 10px;
     font-size: 15px;
-    &:first-child{
+
+    &:first-child {
       margin-top: 20px;
     }
+    div , .icon{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .icon {
+      right: 0;
+      padding: 0 10px;
+      cursor: pointer;
+      &:hover{
+        color: rgb(192, 49, 24);
+        transition: 0.2s;
+      }
+    }
+
+
+
   }
 }

@@ -1,5 +1,8 @@
 <div class="tasksContainer">
-  <div class="task" *ngFor="let task of tasksList">
-    {{task}}
+  <div class="task-tab" *ngFor="let task of tasksList">
+    <div>{{task}}</div>
+    <span class="icon">
+      <i class ="fa fa-solid fa-close"></i>
+    </span>
   </div>
 </div>
