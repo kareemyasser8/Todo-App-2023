@@ -3,7 +3,7 @@
   <div class="task-tab" *ngFor="let task of tasks">
 
     <div class = "task">
-      <input type="radio" (change)="seeIfChecked(task)">
+      <input type="radio" (change)="seeIfChecked(task)" [checked]="task.checked">
       <label [style.text-decoration]="task.checked? 'line-through' : ''" >
       {{task.description}}
     </label>

@@ -28,12 +28,18 @@ export class TasksListComponent implements OnInit, OnDestroy{
 
   seeIfChecked(task){
     task.checked=!task.checked
+    this.playSound();
     this.serviceSubscription = this.taskService.update(task).subscribe(
       (response)=>console.log(response)
     )
   }
 
-
+  playSound(){
+    let audio = new Audio();
+    audio.src = "../assets/audio/task-sound.mp3";
+    audio.load();
+    audio.play();
+  }
 
   ngOnDestroy(): void {
     this.serviceSubscription.unsubscribe();
