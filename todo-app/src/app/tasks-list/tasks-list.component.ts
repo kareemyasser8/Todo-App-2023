@@ -19,6 +19,7 @@ export class TasksListComponent implements OnInit, OnDestroy{
   tasks: any[];
   tasksEmpty: boolean = true;
   serviceSubscription: Subscription;
+  totalTasksCount = 0;
 
   checked:boolean = false;
 
@@ -26,9 +27,20 @@ export class TasksListComponent implements OnInit, OnDestroy{
 
   }
 
+  // getTotalChecked(): number{
+  //   let total = 0;
+  //   for(let i =0; i < this.tasks.length; i++){
+  //     if(this.tasks[i].checked == true) total++;
+  //   }
+
+  //   return total;
+  // }
+
+
   seeIfChecked(task){
     task.checked=!task.checked
     this.playSound();
+    this.totalTasksCount++
     this.serviceSubscription = this.taskService.update(task).subscribe(
       (response)=>console.log(response)
     )
@@ -51,6 +63,11 @@ export class TasksListComponent implements OnInit, OnDestroy{
     this.serviceSubscription = this.taskService.getAll()
       .subscribe((response: any[]) => {
         this.tasks = response.reverse();
+
+        for(let i =0; i < this.tasks.length; i++){
+          if(this.tasks[i].checked == true) this.totalTasksCount++;
+        }
+
         if (response && response.length != 0) {
           this.tasksEmpty = false;
           console.log("this.tasksEmpty = ", this.tasksEmpty);
@@ -96,6 +113,7 @@ export class TasksListComponent implements OnInit, OnDestroy{
     let index = this.tasks.indexOf(task);
     console.log(task);
     this.tasks.splice(index, 1);
+    if(task.checked == true) this.totalTasksCount--;
     this.serviceSubscription = this.taskService.delete(task).subscribe(
       (response) => {
         if (this.tasks.length == 0) {

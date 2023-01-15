@@ -1,5 +1,10 @@
 <welcome-message [isEmpty]="tasksEmpty" ></welcome-message>
 <div class="tasksContainer">
+
+  <div class="tasks-completed" *ngIf="totalTasksCount > 0">
+    Tasks Completed {{totalTasksCount}}
+  </div>
+
   <div class="task-tab" *ngFor="let task of tasks">
 
     <div class = "task">
