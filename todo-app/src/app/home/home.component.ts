@@ -1,5 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { TasksService } from './../tasks.service';
+import { TasksService } from '../services/tasks.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
@@ -9,21 +9,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  tasksEmpty: boolean = true;
-  subscription: Subscription;
-
-  constructor(private taskService: TasksService) {
+  constructor() {
 
   }
   ngOnInit(): void {
-    this.subscription = this.taskService.getTasksList().subscribe((tasksArray) => {
-      if (tasksArray && tasksArray.length != 0)
-        this.tasksEmpty = false;
-    })
+
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+
   }
 
 }

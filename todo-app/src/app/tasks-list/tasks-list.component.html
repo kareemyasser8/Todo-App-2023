@@ -1,8 +1,19 @@
+<welcome-message [isEmpty]="tasksEmpty" ></welcome-message>
 <div class="tasksContainer">
-  <div class="task-tab" *ngFor="let task of tasksList">
-    <div>{{task}}</div>
-    <span class="icon">
+  <div class="task-tab" *ngFor="let task of tasks">
+    <div>{{task.description}}</div>
+    <span class="icon" (click)="deleteTask(task)">
       <i class ="fa fa-solid fa-close"></i>
     </span>
   </div>
 </div>
+
+<form class="input-container">
+  <input type="text"
+  placeholder="Write your task here"
+  name="task"
+  #taskDec
+  (keyup.enter)="createTask(taskDec)"
+  ngModel>
+</form>
+
