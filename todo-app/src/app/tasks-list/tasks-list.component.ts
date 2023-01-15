@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { NotFoundError } from './../common/not-found-error';
 import { BadRequestError } from './../common/bad-request-error';
 import { AppError } from './../common/app-error';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { TasksService } from '../services/tasks.service';
 
@@ -13,17 +14,35 @@ import { TasksService } from '../services/tasks.service';
 
 
 
-export class TasksListComponent implements OnInit {
+export class TasksListComponent implements OnInit, OnDestroy{
 
   tasks: any[];
   tasksEmpty: boolean = true;
+  serviceSubscription: Subscription;
+
+  checked:boolean = false;
 
   constructor(private taskService: TasksService) {
 
   }
 
+  seeIfChecked(task){
+    task.checked=!task.checked
+    this.serviceSubscription = this.taskService.update(task).subscribe(
+      (response)=>console.log(response)
+    )
+  }
+
+
+
+  ngOnDestroy(): void {
+    this.serviceSubscription.unsubscribe();
+  }
+
+
+
   ngOnInit(): void {
-    this.taskService.getAll()
+    this.serviceSubscription = this.taskService.getAll()
       .subscribe((response: any[]) => {
         this.tasks = response.reverse();
         if (response && response.length != 0) {
@@ -45,9 +64,9 @@ export class TasksListComponent implements OnInit {
   }
 
   createTask(taskDec: HTMLInputElement) {
-    let inputTask = { "description": taskDec.value };
+    let inputTask = { "description": taskDec.value, "checked": false};
     taskDec.value = "";
-    this.taskService.create(inputTask).subscribe(
+    this.serviceSubscription = this.taskService.create(inputTask).subscribe(
       (response: any) => {
         if (response && response.length != 0) {
           this.tasksEmpty = false;
@@ -71,7 +90,7 @@ export class TasksListComponent implements OnInit {
     let index = this.tasks.indexOf(task);
     console.log(task);
     this.tasks.splice(index, 1);
-    this.taskService.delete(task).subscribe(
+    this.serviceSubscription = this.taskService.delete(task).subscribe(
       (response) => {
         if (this.tasks.length == 0) {
           this.tasksEmpty = true;

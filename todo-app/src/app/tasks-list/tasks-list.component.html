@@ -1,10 +1,18 @@
 <welcome-message [isEmpty]="tasksEmpty" ></welcome-message>
 <div class="tasksContainer">
   <div class="task-tab" *ngFor="let task of tasks">
-    <div>{{task.description}}</div>
+
+    <div class = "task">
+      <input type="radio" (change)="seeIfChecked(task)">
+      <label [style.text-decoration]="task.checked? 'line-through' : ''" >
+      {{task.description}}
+    </label>
+    </div>
+
     <span class="icon" (click)="deleteTask(task)">
       <i class ="fa fa-solid fa-close"></i>
     </span>
+
   </div>
 </div>
 

@@ -1,4 +1,20 @@
 {
-  "tasks": [],
+  "tasks": [
+    {
+      "description": "play sports",
+      "checked": true,
+      "id": 1
+    },
+    {
+      "description": "watch TV",
+      "checked": false,
+      "id": 2
+    },
+    {
+      "description": "study",
+      "checked": true,
+      "id": 3
+    }
+  ],
   "jobs": []
 }
