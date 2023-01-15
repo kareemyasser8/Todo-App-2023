@@ -1,3 +1,6 @@
+import { NotFoundError } from './../common/not-found-error';
+import { BadRequestError } from './../common/bad-request-error';
+import { AppError } from './../common/app-error';
 import { Component, OnInit } from '@angular/core';
 
 import { TasksService } from '../services/tasks.service';
@@ -21,7 +24,7 @@ export class TasksListComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskService.getAll()
-      .subscribe((response: any) => {
+      .subscribe((response: any[]) => {
         this.tasks = response.reverse();
         if (response && response.length != 0) {
           this.tasksEmpty = false;
@@ -29,7 +32,14 @@ export class TasksListComponent implements OnInit {
         }
         console.log("The tasks in the list components now: ", this.tasks);
 
-      }
+      },
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
+            console.log("Page not found")
+          } else {
+            throw error;
+          }
+        }
       )
 
   }
@@ -44,6 +54,14 @@ export class TasksListComponent implements OnInit {
         }
         inputTask["id"] = response.id;
         this.tasks.splice(0, 0, inputTask);
+      },
+      (error: AppError) => {
+        this.tasks.splice(0, 1);
+        if (error instanceof BadRequestError) {
+
+        } else {
+          throw error;
+        }
       }
     )
   }

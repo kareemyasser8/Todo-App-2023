@@ -1,5 +1,6 @@
+import { AppErrorHandler } from './common/app-error-handler';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -27,7 +28,8 @@ import { WelcomeMessageComponent } from './welcome-message/welcome-message.compo
     AppRoutingModule,
   ],
   providers: [
-    TasksService
+    TasksService,
+    {provide: ErrorHandler, useClass : AppErrorHandler}
   ],
   bootstrap: [AppComponent]
 })
