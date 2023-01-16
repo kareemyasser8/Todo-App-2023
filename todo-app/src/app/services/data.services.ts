@@ -10,6 +10,8 @@ export class DataService {
 
   }
 
+
+
   getAll(): Observable<Object>{
     return this.http.get(this.url).pipe(
       map((response=>{return response})),
