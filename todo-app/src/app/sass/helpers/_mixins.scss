@@ -7,5 +7,14 @@
 @mixin addBackGround($firstColor,$secondColor) {
   background-image: linear-gradient(to bottom right, $firstColor, $secondColor);
   background-size: cover;
+}
 
+@mixin drawCircle($fontSize, $width, $bgColor){
+  background-color: $bgColor;
+  border-radius: 50%;
+  width: $width;
+  height: $width;
+  padding:3px;
+  font-size: $fontSize;
+  text-align: center;
 }

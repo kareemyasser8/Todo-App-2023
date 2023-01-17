@@ -1,9 +1,14 @@
 {
   "tasks": [
     {
-      "description": "Mosh",
+      "description": "study programming",
       "checked": true,
       "id": 1
+    },
+    {
+      "description": "study",
+      "checked": false,
+      "id": 2
     }
   ],
   "jobs": []

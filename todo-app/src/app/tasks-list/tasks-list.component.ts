@@ -26,16 +26,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   }
 
-  // getTotalChecked(): number{
-  //   let total = 0;
-  //   for(let i =0; i < this.tasks.length; i++){
-  //     if(this.tasks[i].checked == true) total++;
-  //   }
-
-  //   return total;
-  // }
-
-
   seeIfChecked(task) {
     task.checked = !task.checked
     this.playSound();

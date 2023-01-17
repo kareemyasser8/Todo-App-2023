@@ -18,7 +18,7 @@ import { WelcomeMessageComponent } from './welcome-message/welcome-message.compo
     CategoryDisplayerComponent,
     TasksListComponent,
     HomeComponent,
-    WelcomeMessageComponent
+    WelcomeMessageComponent,
   ],
   imports: [
     BrowserModule,
