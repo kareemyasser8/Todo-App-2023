@@ -2,14 +2,11 @@
 @use '../helpers/mixins';
 
 
-.container {
-  margin: auto; // horizontally centered because it has margin: auto;
-  // border: 1px solid red;
-  padding-right: 10px;
-  padding-left: 10px;
-  position: relative;
+.app-container{
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  height: 95%;
-  overflow: hidden;
+  flex-direction: row;
+  align-items: stretch;
 }
+
+

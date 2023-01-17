@@ -1,63 +1,69 @@
 @use '../sass/helpers/variables';
 @import '../sass/components/radio-buttons';
-
+@import '../sass/layout/grid';
 
 .tasksContainer {
-  margin: auto;
-  width: 98%;
+  display:grid;
+  height: 100%;
+  grid-template-rows: 85% 15%;
+
+.tasks-list{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-basis: 100%;
+  padding-top: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
 
-  .tasks-completed{
+  .tasks-completed {
     width: 180px;
     height: 40px;
-    background-color: rgba(white,0.6);
+    background-color: rgba(white, 0.6);
     color: black;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding-left: 9px;
-    margin: 10px 0px;
     border-radius: 5px;
     text-align: center;
     font-family: variables.$appFont;
+    margin-bottom: 10px;
 
   }
 
+
   .task-tab {
-    background-color: #FFF;
-    font-family: Roboto;
+    background-color: variables.$whiteBackgroundColor;
+    font-family: variables.$appFont;
     margin-bottom: 10px;
     height: 40px;
     border-radius: 3px;
     border: none;
     outline: none;
     display: flex;
+    align-self: center;
     align-items: center;
     position: relative;
     width: 98%;
     padding: 0 10px;
-    font-size: 15px;
+    font-size: variables.$appfontSize;
 
-
-    &:first-child {
-      margin-top: 20px;
-    }
-
-    .task, .icon, .task-checker-container {
+    .task,
+    .icon,
+    .task-checker-container {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
     }
 
-    .task{
-      input{
+    .task {
+      input {
         cursor: pointer;
       }
     }
 
-    .crossed-text{
+    .crossed-text {
       text-decoration: line-through;
     }
 
@@ -71,41 +77,28 @@
         transition: 0.2s;
       }
     }
-
-
-
-
-
-
-
   }
+
 
 }
 
-
 .input-container {
-  // border: 1px solid peru;
-  height: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 25px;
+    padding-left: 25px;
 
-
-  input {
-    height: 40px;
-    border-radius: 3px;
-    border: none;
-    outline: none;
-    width: 96%;
-    padding-left: 10px;
-    font-size: 15px;
+    input {
+      height: 40px;
+      border-radius: 3px;
+      border: none;
+      outline: none;
+      width: 100%;
+      padding-left: 10px;
+      font-size: 15px;
+      background-color: variables.$whiteBackgroundColor;
+    }
   }
 
 }

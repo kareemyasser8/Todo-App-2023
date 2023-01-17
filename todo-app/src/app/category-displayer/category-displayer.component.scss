@@ -1,14 +1,14 @@
 @use '../sass/helpers/variables';
 
 .categoryContainer{
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
-  padding-left: 15px;
-  margin-top: 5px;
+  padding-left: 30px;
   font-family: variables.$appFont;
-  color: white;
+  color: variables.$whiteBackgroundColor;
   .category{
     font-weight: 500;
     font-size: variables.$categoryFontSize;

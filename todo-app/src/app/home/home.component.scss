@@ -1,0 +1,14 @@
+@use '../sass/helpers/variables';
+
+.options-container{
+  background-color: variables.$whiteBackgroundColor;
+  color: black;
+  width: 300px;
+}
+
+
+.right-container{
+  display: grid;
+  grid-template-rows: 13% 87%;
+  width: 100vw;
+}

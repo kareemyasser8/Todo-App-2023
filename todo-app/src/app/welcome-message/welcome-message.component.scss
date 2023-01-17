@@ -1,27 +1,22 @@
 @use '../sass/helpers/variables';
 
 .initMessageContainer {
-  height: 100%;
   display: flex;
-  // border: 1px solid red;
-  position: relative;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 
   .initMessage {
-    @media #{variables.$large}{
-      margin-top: 50px;
-    }
     background: rgba(black, 0.5);
     width: 250px;
     max-height: 200px;
     padding: 22px;
     border-radius: variables.$borderRad;
     text-align: center;
-    color: white;
+    color: variables.$whiteBackgroundColor;
 
     font: {
-      size: 12px;
+      size: variables.$appSmallfontSize;
       family: variables.$appFont;
       weight: 300;
     }
