@@ -3,6 +3,7 @@ import { NotFoundError } from './../common/not-found-error';
 import { BadRequestError } from './../common/bad-request-error';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
+// import {ajax} from 'rxjs/ajax'
 
 export class DataService {
 
@@ -10,7 +11,7 @@ export class DataService {
 
   }
 
-
+  // data = ajax('www.localhost:3000/tasks');
 
   getAll(): Observable<Object>{
     return this.http.get(this.url).pipe(

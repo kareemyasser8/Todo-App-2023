@@ -1,10 +1,10 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { NotFoundError } from './../common/not-found-error';
-import { BadRequestError } from './../common/bad-request-error';
-import { AppError } from './../common/app-error';
-import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { TasksService } from '../services/tasks.service';
+import { AppError } from './../common/app-error';
+import { BadRequestError } from './../common/bad-request-error';
+import { NotFoundError } from './../common/not-found-error';
 
 @Component({
   selector: 'tasks-list',
@@ -13,14 +13,14 @@ import { TasksService } from '../services/tasks.service';
 })
 
 
-
 export class TasksListComponent implements OnInit, OnDestroy {
 
   tasks: any[];
   tasksEmpty: boolean = true;
   serviceSubscription: Subscription;
-  totalTasksCount = 0;
+  countTasksCompleted = 0;
   checked: boolean = false;
+  public currentTasks: number;
 
   constructor(private taskService: TasksService) {
 
@@ -29,10 +29,11 @@ export class TasksListComponent implements OnInit, OnDestroy {
   seeIfChecked(task) {
     task.checked = !task.checked
     this.playSound();
-    this.totalTasksCount++
-    this.serviceSubscription = this.taskService.update(task).subscribe(
-      (response) => console.log(response)
-    )
+    this.countTasksCompleted++;
+    this.currentTasks = this.tasks.length - this.countTasksCompleted;
+
+    this.updateTasksNumbers()
+    this.serviceSubscription = this.taskService.update(task).subscribe(null)
   }
 
   playSound() {
@@ -46,23 +47,22 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.serviceSubscription.unsubscribe();
   }
 
-
-
   ngOnInit(): void {
+
     this.serviceSubscription = this.taskService.getAll()
       .subscribe((response: any[]) => {
         this.tasks = response.reverse();
 
         for (let i = 0; i < this.tasks.length; i++) {
-          if (this.tasks[i].checked == true) this.totalTasksCount++;
+          if (this.tasks[i].checked == true) this.countTasksCompleted++;
         }
 
         if (response && response.length != 0) {
           this.tasksEmpty = false;
-          console.log("this.tasksEmpty = ", this.tasksEmpty);
         }
-        console.log("The tasks in the list components now: ", this.tasks);
 
+        this.currentTasks = this.tasks.length - this.countTasksCompleted;
+        this.updateTasksNumbers()
       },
         (error: AppError) => {
           if (error instanceof NotFoundError) {
@@ -81,6 +81,10 @@ export class TasksListComponent implements OnInit, OnDestroy {
     } else {
       let inputTask = { "description": taskDec.value, "checked": false };
       taskDec.value = "";
+      this.currentTasks = this.tasks.length - this.countTasksCompleted;
+      this.currentTasks++;
+
+      this.updateTasksNumbers()
       this.serviceSubscription = this.taskService.create(inputTask).subscribe(
         (response: any) => {
           if (response && response.length != 0) {
@@ -106,7 +110,14 @@ export class TasksListComponent implements OnInit, OnDestroy {
     let index = this.tasks.indexOf(task);
     console.log(task);
     this.tasks.splice(index, 1);
-    if (task.checked == true) this.totalTasksCount--;
+    if (task.checked == true){
+      this.countTasksCompleted--;
+    }else{
+      this.currentTasks--;
+    }
+
+    this.updateTasksNumbers()
+
     this.serviceSubscription = this.taskService.delete(task).subscribe(
       (response) => {
         if (this.tasks.length == 0) {
@@ -114,6 +125,13 @@ export class TasksListComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  updateTasksNumbers(){
+    this.taskService.changeCompletedTasks({
+      completedTasks: this.countTasksCompleted,
+      currentTasks: this.currentTasks
+    })
   }
 
 }

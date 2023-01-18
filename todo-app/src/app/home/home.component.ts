@@ -1,6 +1,6 @@
-import { Observable, Subscription } from 'rxjs';
-import { TasksService } from '../services/tasks.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +9,26 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor() {
+  tasks: any[];
+  currentTasks: number = 0;
+  subscription: Subscription;
+  countTasksCompleted: number = 0;
+
+  constructor(private taskService: TasksService) {
 
   }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    this.subscription = this.taskService.currentTasksNumbers.subscribe(
+      tasksNumbers => {
+        this.countTasksCompleted = tasksNumbers.completedTasks
+        this.currentTasks = tasksNumbers.currentTasks
+      }
+    )
   }
 
   ngOnDestroy(): void {
-
+    this.subscription.unsubscribe();
   }
 
 }

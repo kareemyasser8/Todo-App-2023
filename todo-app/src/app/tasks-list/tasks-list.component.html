@@ -4,8 +4,8 @@
 
   <div class="tasks-list" *ngIf="!tasksEmpty">
 
-    <div class="tasks-completed" *ngIf="totalTasksCount > 0">
-      Tasks Completed {{totalTasksCount}}
+    <div class="tasks-completed" *ngIf="countTasksCompleted > 0">
+      Tasks Completed {{countTasksCompleted}}
     </div>
 
     <div class="task-tab" *ngFor="let task of tasks">
