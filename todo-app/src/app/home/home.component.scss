@@ -17,7 +17,7 @@
 
     padding:15px;
     cursor: pointer;
-    background-color: variables.$darkGray;
+    // background-color: variables.$darkGray;
     border-radius: 5px;
 
     i{
@@ -35,10 +35,20 @@
     .task-count{
       @include mixins.drawCircle(15px,20px,rgb(156, 154, 151));
     }
-
   }
 
 }
+
+.option:not(.active):hover{
+  background-color: rgb(199, 199, 199);
+}
+
+.option.active{
+  background-color: variables.$darkGray;
+}
+
+
+
 
 
 .right-container{

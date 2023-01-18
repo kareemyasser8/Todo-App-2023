@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { TasksService } from '../services/tasks.service';
-import { AppError } from './../common/app-error';
-import { BadRequestError } from './../common/bad-request-error';
-import { NotFoundError } from './../common/not-found-error';
+import { AppError } from '../common/app-error';
+import { BadRequestError } from '../common/bad-request-error';
+import { NotFoundError } from '../common/not-found-error';
 
 @Component({
-  selector: 'tasks-list',
-  templateUrl: './tasks-list.component.html',
-  styleUrls: ['./tasks-list.component.scss']
+  selector: 'myDay-list',
+  templateUrl: './myDay-list.component.html',
+  styleUrls: ['./myDay-list.component.scss']
 })
 
 
@@ -108,7 +108,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
 
   deleteTask(task: any) {
     let index = this.tasks.indexOf(task);
-    console.log(task);
     this.tasks.splice(index, 1);
     if (task.checked == true){
       this.countTasksCompleted--;
