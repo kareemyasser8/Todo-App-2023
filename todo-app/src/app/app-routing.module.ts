@@ -5,7 +5,8 @@ import { FavouriteListComponent } from './favourite-list/favourite-list.componen
 import { MyDayTasksListComponent } from './myDay-list/myDay-list.component';
 
 const routes: Routes = [
-  {path: '', component: MyDayTasksListComponent},
+  {path: '', redirectTo: 'my-day', pathMatch: 'full'},
+  {path: 'my-day', component: MyDayTasksListComponent},
   {path: 'favourite-list', component: FavouriteListComponent},
 ];
 
