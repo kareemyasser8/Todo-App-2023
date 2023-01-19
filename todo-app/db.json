@@ -7,21 +7,21 @@
     },
     {
       "description": "d",
-      "checked": false,
+      "checked": true,
       "id": 2
     },
     {
-      "description": "f",
+      "description": "s",
       "checked": false,
       "id": 3
     },
     {
-      "description": "f",
+      "description": "d",
       "checked": false,
       "id": 4
     },
     {
-      "description": "d",
+      "description": "f",
       "checked": false,
       "id": 5
     },
@@ -36,7 +36,7 @@
       "id": 7
     },
     {
-      "description": "g",
+      "description": "d",
       "checked": false,
       "id": 8
     },
@@ -56,69 +56,14 @@
       "id": 11
     },
     {
-      "description": "d",
+      "description": "f",
       "checked": false,
       "id": 12
     },
     {
-      "description": "f",
+      "description": "d",
       "checked": false,
       "id": 13
-    },
-    {
-      "description": "g",
-      "checked": false,
-      "id": 14
-    },
-    {
-      "description": "d",
-      "checked": false,
-      "id": 15
-    },
-    {
-      "description": "f",
-      "checked": false,
-      "id": 16
-    },
-    {
-      "description": "d",
-      "checked": false,
-      "id": 17
-    },
-    {
-      "description": "f",
-      "checked": false,
-      "id": 18
-    },
-    {
-      "description": "d",
-      "checked": false,
-      "id": 19
-    },
-    {
-      "description": "f",
-      "checked": true,
-      "id": 20
-    },
-    {
-      "description": "s",
-      "checked": false,
-      "id": 21
-    },
-    {
-      "description": "sd",
-      "checked": false,
-      "id": 22
-    },
-    {
-      "description": "sds",
-      "checked": false,
-      "id": 23
-    },
-    {
-      "description": "f",
-      "checked": false,
-      "id": 24
     }
   ],
   "jobs": []

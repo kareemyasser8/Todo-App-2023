@@ -11,10 +11,15 @@
 .tasks-list{
   display: block;
   max-height:90%;
-  overflow: hidden;
+  overflow: auto;
+  overflow-x: hidden;
   padding-top: 20px;
   padding-right: 30px;
   padding-left: 30px;
+}
+
+::-webkit-scrollbar{
+  width: 0px;
 }
 
 .tasks-completed {
