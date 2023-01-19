@@ -1,12 +1,12 @@
-import { MyDayTasksListComponent } from './myDay-list/myDay-list.component';
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { FavouriteListComponent } from './favourite-list/favourite-list.component';
+import { MyDayTasksListComponent } from './myDay-list/myDay-list.component';
+
 const routes: Routes = [
-  // {path: '', component: HomeComponent},
-  {path: 'my-day', component: MyDayTasksListComponent},
-  // {path: '', component: HomeComponent},
+  {path: '', component: MyDayTasksListComponent},
+  {path: 'favourite-list', component: FavouriteListComponent},
 ];
 
 @NgModule({

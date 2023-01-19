@@ -1,6 +1,13 @@
 @use '../sass/helpers/variables';
 @use '../sass/helpers/mixins';
 
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+
 .options-container{
   background-color: variables.$whiteBackgroundColor;
   color: black;

@@ -36,7 +36,7 @@
       "id": 7
     },
     {
-      "description": "d",
+      "description": "g",
       "checked": false,
       "id": 8
     },
@@ -49,21 +49,6 @@
       "description": "f",
       "checked": false,
       "id": 10
-    },
-    {
-      "description": "d",
-      "checked": false,
-      "id": 11
-    },
-    {
-      "description": "f",
-      "checked": false,
-      "id": 12
-    },
-    {
-      "description": "d",
-      "checked": false,
-      "id": 13
     }
   ],
   "jobs": []

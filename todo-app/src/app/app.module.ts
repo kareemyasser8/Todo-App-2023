@@ -12,6 +12,7 @@ import { MyDayTasksListComponent } from './myDay-list/myDay-list.component';
 import { TasksService } from './services/tasks.service';
 import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
 import { OptionsPanelComponent } from './options-panel/options-panel.component';
+import { FavouriteListComponent } from './favourite-list/favourite-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { OptionsPanelComponent } from './options-panel/options-panel.component';
     HomeComponent,
     WelcomeMessageComponent,
     OptionsPanelComponent,
+    FavouriteListComponent,
   ],
   imports: [
     BrowserModule,

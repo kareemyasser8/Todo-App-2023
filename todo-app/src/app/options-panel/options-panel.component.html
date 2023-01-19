@@ -1,12 +1,14 @@
 <div class="options-container">
-  <div class="option active">
+
+  <a class="option active" [routerLink]="['']">
     <i class="fa fa-sun-o"></i>
     <label>My Day</label>
     <div class = "task-count">{{currentTasks}}</div>
-  </div>
-  <div class="option">
+  </a>
+
+  <a class="option" [routerLink]="['/favourite-list']">
     <i class="fa fa-star-o"></i>
     <label>Important</label>
     <!-- <div class = "task-count">1</div> -->
-  </div>
+  </a>
 </div>
