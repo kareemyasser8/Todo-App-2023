@@ -1,2 +1,13 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+  <app-options-panel></app-options-panel>
 
+  <div class="app-right-container">
+    <category-displayer></category-displayer>
+    <ng-container *ngTemplateOutlet="routeroutlet"></ng-container>
+  </div>
+</div>
+
+
+<ng-template #routeroutlet>
+  <router-outlet></router-outlet>
+</ng-template>

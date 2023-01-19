@@ -13,7 +13,7 @@ import { NotFoundError } from '../common/not-found-error';
 })
 
 
-export class TasksListComponent implements OnInit, OnDestroy {
+export class MyDayTasksListComponent implements OnInit, OnDestroy {
 
   tasks: any[];
   tasksEmpty: boolean = true;

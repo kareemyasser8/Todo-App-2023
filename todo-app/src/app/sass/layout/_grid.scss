@@ -1,12 +1,17 @@
 @use '../helpers/variables';
 @use '../helpers/mixins';
 
-
 .app-container{
   height: 100vh;
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+}
+
+.app-right-container{
+  max-height: 100vh;
+  display: grid;
+  grid-template-rows: 12% 1% 87%;
+  width: 100%;
 }
 
 

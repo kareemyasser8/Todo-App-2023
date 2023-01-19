@@ -8,17 +8,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryDisplayerComponent } from './category-displayer/category-displayer.component';
 import { HomeComponent } from './home/home.component';
-import { TasksListComponent } from './myDay-list/myDay-list.component';
+import { MyDayTasksListComponent } from './myDay-list/myDay-list.component';
 import { TasksService } from './services/tasks.service';
 import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
+import { OptionsPanelComponent } from './options-panel/options-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryDisplayerComponent,
-    TasksListComponent,
+    MyDayTasksListComponent,
     HomeComponent,
     WelcomeMessageComponent,
+    OptionsPanelComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyDayTasksListComponent } from './myDay-list.component';
+import { OptionsPanelComponent } from './options-panel.component';
 
-describe('MyDayTasksListComponent', () => {
-  let component: MyDayTasksListComponent;
-  let fixture: ComponentFixture<MyDayTasksListComponent>;
+describe('OptionsPanelComponent', () => {
+  let component: OptionsPanelComponent;
+  let fixture: ComponentFixture<OptionsPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyDayTasksListComponent ]
+      declarations: [ OptionsPanelComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MyDayTasksListComponent);
+    fixture = TestBed.createComponent(OptionsPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
