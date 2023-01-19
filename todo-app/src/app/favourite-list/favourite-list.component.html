@@ -1,1 +1,36 @@
-<p>favourite-list works!</p>
+<div class="tasksContainer">
+
+  <welcome-message *ngIf="tasksEmpty" [isEmpty]="tasksEmpty"></welcome-message>
+
+
+    <div class="tasks-list" *ngIf="!tasksEmpty">
+
+      <div class="tasks-completed" *ngIf="countTasksCompleted > 0">
+        Tasks Completed {{countTasksCompleted}}
+      </div>
+
+      <div class="task-tab" *ngFor="let task of tasks">
+
+        <div class="task">
+          <input type="radio" (change)="seeIfChecked(task)" [checked]="task.checked">
+          <label [style.text-decoration]="task.checked? 'line-through' : ''">
+            {{task.description}}
+          </label>
+        </div>
+
+        <span class="icon" (click)="deleteTask(task)">
+          <i class="fa fa-solid fa-close"></i>
+        </span>
+
+      </div>
+
+    </div>
+
+
+  <form class="input-container">
+    <input type="text" placeholder="Write your task here" name="task" #taskDec (keyup.enter)="createTask(taskDec)"
+      ngModel>
+  </form>
+
+</div>
+
