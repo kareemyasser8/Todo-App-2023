@@ -2,21 +2,21 @@
   "tasks": [
     {
       "description": "d",
-      "checked": false,
+      "checked": true,
       "id": 1
     },
     {
       "description": "f",
-      "checked": false,
+      "checked": true,
       "id": 2
     },
     {
-      "description": "g",
+      "description": "study programming",
       "checked": false,
       "id": 3
     },
     {
-      "description": "gd",
+      "description": "play sports",
       "checked": false,
       "id": 4
     }
