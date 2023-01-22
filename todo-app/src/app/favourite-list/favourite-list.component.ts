@@ -62,7 +62,7 @@ export class FavouriteListComponent implements OnInit {
 
         });
 
-        if (response && response.length != 0) {
+        if (this.countTasksFavorite != 0) {
           this.favouriteTasksEmpty = false;
         }
 
@@ -105,7 +105,11 @@ export class FavouriteListComponent implements OnInit {
     (task.isFavorite == true && task.checked == false)? this.currentFavoriteTasks-- : null;
     (task.isFavorite == true && task.checked == false)? this.currentTasks-- : null;
 
-    this.taskService.delete(task).subscribe(null);
+    this.taskService.delete(task).subscribe((response) => {
+      if (this.currentFavoriteTasks == 0) {
+        this.favouriteTasksEmpty = true;
+      }
+    });
     this.updateTasksNumbers();
   }
 
