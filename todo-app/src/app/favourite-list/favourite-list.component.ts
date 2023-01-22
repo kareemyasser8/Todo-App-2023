@@ -11,12 +11,16 @@ import { TasksService } from '../services/tasks.service';
 })
 export class FavouriteListComponent implements OnInit {
 
-  tasks: any[];
-  tasksEmpty: boolean = true;
+  favouriteTasks: any[] = [];
+  fullTasksSize: number;
+  favouriteTasksEmpty: boolean = true;
   serviceSubscription: Subscription;
+  countFavTasksCompleted = 0;
   countTasksCompleted = 0;
+  countTasksFavorite = 0;
   checked: boolean = false;
-  public currentTasks: number;
+  currentFavoriteTasks: number = 0;
+  public currentTasks: number = 0;
 
   constructor(private taskService: TasksService) {
 
@@ -25,8 +29,9 @@ export class FavouriteListComponent implements OnInit {
   seeIfChecked(task) {
     task.checked = !task.checked
     this.playSound();
-    this.countTasksCompleted++;
-    this.currentTasks = this.tasks.length - this.countTasksCompleted;
+    this.countFavTasksCompleted++;
+    this.currentTasks = this.fullTasksSize - this.countFavTasksCompleted;
+    this.currentFavoriteTasks = this.countTasksFavorite - this.countFavTasksCompleted;
 
     this.updateTasksNumbers()
     this.serviceSubscription = this.taskService.update(task).subscribe(null)
@@ -47,17 +52,23 @@ export class FavouriteListComponent implements OnInit {
 
     this.serviceSubscription = this.taskService.getAll()
       .subscribe((response: any[]) => {
-        this.tasks = response.reverse();
+        response.reverse();
+        response.forEach(element => {
+          element.isFavorite == true? this.favouriteTasks.push(element): null
+          element.isFavorite == true? this.countTasksFavorite++: null
+          element.checked == true && element.isFavorite == true? this.countFavTasksCompleted++ : null
+          element.checked == false && element.isFavorite == true? this.currentFavoriteTasks++ : null
+          element.checked == true? this.countTasksCompleted++ : null
 
-        for (let i = 0; i < this.tasks.length; i++) {
-          if (this.tasks[i].checked == true) this.countTasksCompleted++;
-        }
+        });
 
         if (response && response.length != 0) {
-          this.tasksEmpty = false;
+          this.favouriteTasksEmpty = false;
         }
 
-        this.currentTasks = this.tasks.length - this.countTasksCompleted;
+        this.fullTasksSize = response.length
+
+        this.currentTasks = this.fullTasksSize - this.countTasksCompleted;
         this.updateTasksNumbers()
       },
         (error: AppError) => {
@@ -71,26 +82,54 @@ export class FavouriteListComponent implements OnInit {
 
   }
 
+  favoriteTask(task){
+    let index = this.favouriteTasks.indexOf(task);
+    task.isFavorite = !task.isFavorite;
+    if(task.isFavorite == false){
+      this.favouriteTasks.splice(index,1);
+      this.taskService.update(task).subscribe(null);
+      this.countTasksFavorite--;
+      (task.isFavorite == false && task.checked == true)? this.countFavTasksCompleted-- : null;
+      (task.isFavorite == false && task.checked == true)? this.countTasksFavorite-- : null;
+      (task.isFavorite == false && task.checked == false)? this.currentFavoriteTasks-- : null;
+      this.updateTasksNumbers();
+    }
+  }
+
+  deleteTask(task){
+    let index = this.favouriteTasks.indexOf(task);
+    this.favouriteTasks.splice(index,1);
+    this.countTasksFavorite--;
+    (task.isFavorite == true && task.checked == true)? this.countFavTasksCompleted-- : null;
+    (task.isFavorite == true && task.checked == true)? this.countTasksFavorite-- : null;
+    (task.isFavorite == true && task.checked == false)? this.currentFavoriteTasks-- : null;
+    (task.isFavorite == true && task.checked == false)? this.currentTasks-- : null;
+
+    this.taskService.delete(task).subscribe(null);
+    this.updateTasksNumbers();
+  }
+
   createTask(taskDec: HTMLInputElement) {
     if (taskDec.value == "") {
       return
     } else {
-      let inputTask = { "description": taskDec.value, "checked": false };
+      let inputTask = { "description": taskDec.value, "checked": false, "isFavorite": true};
       taskDec.value = "";
-      this.currentTasks = this.tasks.length - this.countTasksCompleted;
+
       this.currentTasks++;
+      this.currentFavoriteTasks++;
 
       this.updateTasksNumbers()
       this.serviceSubscription = this.taskService.create(inputTask).subscribe(
         (response: any) => {
           if (response && response.length != 0) {
-            this.tasksEmpty = false;
+            this.favouriteTasksEmpty = false;
           }
           inputTask["id"] = response.id;
-          this.tasks.splice(0, 0, inputTask);
+          this.favouriteTasks.splice(0, 0, inputTask);
         },
         (error: AppError) => {
-          this.tasks.splice(0, 1);
+          this.favouriteTasks.splice(0, 1);
           if (error instanceof BadRequestError) {
 
           } else {
@@ -102,30 +141,32 @@ export class FavouriteListComponent implements OnInit {
   }
 
 
-  deleteTask(task: any) {
-    let index = this.tasks.indexOf(task);
-    this.tasks.splice(index, 1);
-    if (task.checked == true){
-      this.countTasksCompleted--;
-    }else{
-      this.currentTasks--;
-    }
+  // deleteTask(task: any) {
+  //   let index = this.tasks.indexOf(task);
+  //   this.tasks.splice(index, 1);
+  //   if (task.checked == true){
+  //     this.countTasksCompleted--;
+  //   }else{
+  //     this.currentTasks--;
+  //   }
 
-    this.updateTasksNumbers()
+  //   this.updateTasksNumbers()
 
-    this.serviceSubscription = this.taskService.delete(task).subscribe(
-      (response) => {
-        if (this.tasks.length == 0) {
-          this.tasksEmpty = true;
-        }
-      }
-    )
-  }
+  //   this.serviceSubscription = this.taskService.delete(task).subscribe(
+  //     (response) => {
+  //       if (this.tasks.length == 0) {
+  //         this.tasksEmpty = true;
+  //       }
+  //     }
+  //   )
+  // }
 
   updateTasksNumbers(){
     this.taskService.changeCompletedTasks({
-      completedTasks: this.countTasksCompleted,
-      currentTasks: this.currentTasks
+      completedTasks: this.countFavTasksCompleted,
+      currentTasks: this.currentTasks,
+      currentFavoriteTasks: this.currentFavoriteTasks,
+      favoriteTasks: this.countTasksFavorite
     })
   }
 

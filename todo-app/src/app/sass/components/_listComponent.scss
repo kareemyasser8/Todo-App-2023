@@ -3,78 +3,79 @@
 @import '../layout/grid';
 
 .tasksContainer {
-  display:grid;
+  display: grid;
   grid-template-rows: 93% 1fr;
   gap: 1rem;
   height: 90%;
 
-.tasks-list{
-  display: block;
-  max-height:90%;
-  overflow: auto;
-  overflow-x: hidden;
-  padding-top: 20px;
-  padding-right: 30px;
-  padding-left: 30px;
-}
-
-::-webkit-scrollbar{
-  width: 0px;
-}
-
-.tasks-completed {
-  width: 180px;
-  height: 40px;
-  background-color: rgba(white, 0.6);
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 9px;
-  border-radius: 5px;
-  text-align: center;
-  font-family: variables.$appFont;
-  margin-bottom: 10px;
-
-}
-
-
-.task-tab {
-  background-color: variables.$whiteBackgroundColor;
-  font-family: variables.$appFont;
-  margin-bottom: 10px;
-  height: 40px;
-  border-radius: 3px;
-  border: none;
-  outline: none;
-  display: flex;
-  align-self: center;
-  align-items: center;
-  position: relative;
-  width: 98%;
-  padding: 0 10px;
-  font-size: variables.$appfontSize;
-
-  .task,
-  .icon,
-  .task-checker-container {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  .tasks-list {
+    display: block;
+    max-height: 90%;
+    overflow: auto;
+    overflow-x: hidden;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
   }
 
-  .task {
-    input {
-      cursor: pointer;
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .tasks-completed {
+    width: max-content;
+    height: 40px;
+    background-color: rgba(white, 0.6);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 9px;
+    padding-right: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: variables.$appFont;
+    margin-bottom: 10px;
+
+  }
+
+
+  .task-tab {
+    background-color: variables.$whiteBackgroundColor;
+    font-family: variables.$appFont;
+    margin-bottom: 10px;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    position: relative;
+    width: 98%;
+    padding: 0 10px;
+    font-size: variables.$appfontSize;
+
+    .task,
+    .icon,
+    .task-checker-container {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .task {
+      input {
+        cursor: pointer;
+      }
+    }
+
+    .crossed-text {
+      text-decoration: line-through;
     }
   }
 
-  .crossed-text {
-    text-decoration: line-through;
-  }
-
   .icon {
-    right: 0;
     padding: 0 10px;
     cursor: pointer;
 
@@ -83,26 +84,36 @@
       transition: 0.2s;
     }
   }
+
+  .delete{
+    right: 0;
+  }
+
+  .favorite{
+    right: 20px;
+  }
+
+
 }
 
 .input-container {
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 25px;
-    padding-left: 25px;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 25px;
+  padding-left: 25px;
 
-    input {
-      height: 40px;
-      border-radius: 3px;
-      border: none;
-      outline: none;
-      width: 100%;
-      padding-left: 10px;
-      font-size: 15px;
-      background-color: variables.$whiteBackgroundColor;
-    }
+  input {
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 15px;
+    background-color: variables.$whiteBackgroundColor;
   }
-
 }
+
+

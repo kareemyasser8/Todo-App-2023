@@ -12,7 +12,9 @@ export class TasksService extends DataService{
   private tasksNumbers = new BehaviorSubject<any>(
     {
       completedTasks: 0,
-      currentTasks: 0
+      currentTasks: 0,
+      currentFavoriteTasks: 0,
+      favoriteTasks: 0
     }
   );
 

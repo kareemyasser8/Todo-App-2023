@@ -1,15 +1,16 @@
 <div class="tasksContainer">
 
-  <welcome-message *ngIf="tasksEmpty" [isEmpty]="tasksEmpty"></welcome-message>
+  <welcome-message *ngIf="favouriteTasksEmpty"
+   [isFavouriteTasksEmpty]="favouriteTasksEmpty"></welcome-message>
 
 
-    <div class="tasks-list" *ngIf="!tasksEmpty">
+    <div class="tasks-list" *ngIf="!favouriteTasksEmpty">
 
-      <div class="tasks-completed" *ngIf="countTasksCompleted > 0">
-        Tasks Completed {{countTasksCompleted}}
+      <div class="tasks-completed" *ngIf="countFavTasksCompleted > 0">
+        Important Tasks Completed {{countFavTasksCompleted}}
       </div>
 
-      <div class="task-tab" *ngFor="let task of tasks">
+      <div class="task-tab" *ngFor="let task of favouriteTasks">
 
         <div class="task">
           <input type="radio" (change)="seeIfChecked(task)" [checked]="task.checked">
@@ -18,7 +19,14 @@
           </label>
         </div>
 
-        <span class="icon" (click)="deleteTask(task)">
+        <span class="icon favorite" (click)="favoriteTask(task)">
+          <i class="fa fa-solid"
+            [class.fa-star-o] = "!task.isFavorite"
+            [class.fa-star] = "task.isFavorite">
+          </i>
+        </span>
+
+        <span class="icon delete" (click)="deleteTask(task)">
           <i class="fa fa-solid fa-close"></i>
         </span>
 

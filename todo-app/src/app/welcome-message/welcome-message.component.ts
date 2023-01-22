@@ -8,4 +8,5 @@ import { Component, OnInit,Input } from '@angular/core';
 
 export class WelcomeMessageComponent {
   @Input() isEmpty: boolean
+  @Input() isFavouriteTasksEmpty: boolean
 }

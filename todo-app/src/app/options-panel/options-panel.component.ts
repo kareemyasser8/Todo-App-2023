@@ -14,6 +14,8 @@ export class OptionsPanelComponent implements OnInit {
   currentTasks: number = 0;
   subscription: Subscription;
   countTasksCompleted: number = 0;
+  countTasksFavorite: number = 0;
+  currentFavoriteTasks: number = 0;
 
   constructor(private taskService: TasksService) {
 
@@ -24,6 +26,8 @@ export class OptionsPanelComponent implements OnInit {
       tasksNumbers => {
         this.countTasksCompleted = tasksNumbers.completedTasks
         this.currentTasks = tasksNumbers.currentTasks
+        this.countTasksFavorite = tasksNumbers.favoriteTasks
+        this.currentFavoriteTasks = tasksNumbers.currentFavoriteTasks
       }
     )
   }

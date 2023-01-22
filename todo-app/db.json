@@ -1,24 +1,10 @@
 {
   "tasks": [
     {
-      "description": "d",
-      "checked": true,
-      "id": 1
-    },
-    {
-      "description": "f",
-      "checked": true,
+      "description": "work",
+      "checked": false,
+      "isFavorite": false,
       "id": 2
-    },
-    {
-      "description": "study programming",
-      "checked": false,
-      "id": 3
-    },
-    {
-      "description": "play sports",
-      "checked": false,
-      "id": 4
     }
   ],
   "jobs": []

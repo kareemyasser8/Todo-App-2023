@@ -18,7 +18,15 @@
           </label>
         </div>
 
-        <span class="icon" (click)="deleteTask(task)">
+        <span class="icon favorite" (click)="favoriteTask(task)">
+          <!-- <i class="fa fa-solid fa-star-o"></i> -->
+          <i class="fa fa-solid"
+            [class.fa-star-o] = "!task.isFavorite"
+            [class.fa-star] = "task.isFavorite">
+          </i>
+        </span>
+
+        <span class="icon delete" (click)="deleteTask(task)">
           <i class="fa fa-solid fa-close"></i>
         </span>
 

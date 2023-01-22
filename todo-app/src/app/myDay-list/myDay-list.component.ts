@@ -19,21 +19,41 @@ export class MyDayTasksListComponent implements OnInit, OnDestroy {
   tasksEmpty: boolean = true;
   serviceSubscription: Subscription;
   countTasksCompleted = 0;
+  countTasksFavorite  = 0;
+  currentFavoriteTasks = 0;
+  countFavTasksCompleted = 0;
   checked: boolean = false;
+  isFavorite: boolean = false;
   public currentTasks: number;
 
   constructor(private taskService: TasksService) {
 
   }
 
+  favoriteTask(task){
+      task.isFavorite = !task.isFavorite;
+      this.serviceSubscription = this.taskService.update(task).subscribe(null);
+      if(task.isFavorite == true && task.checked == false){
+        this.countTasksFavorite++;
+        this.currentFavoriteTasks++
+      }
+      if(task.isFavorite == false && task.checked == false){
+        this.currentFavoriteTasks--;
+        this.countTasksFavorite--;
+      }
+      this.updateTasksNumbers()
+  }
+
   seeIfChecked(task) {
     task.checked = !task.checked
     this.playSound();
     this.countTasksCompleted++;
+    task.isFavorite == true? this.countFavTasksCompleted++: null;
     this.currentTasks = this.tasks.length - this.countTasksCompleted;
-
+    this.currentFavoriteTasks =this.countTasksFavorite - this.countFavTasksCompleted;
     this.updateTasksNumbers()
     this.serviceSubscription = this.taskService.update(task).subscribe(null)
+
   }
 
   playSound() {
@@ -55,6 +75,8 @@ export class MyDayTasksListComponent implements OnInit, OnDestroy {
 
         for (let i = 0; i < this.tasks.length; i++) {
           if (this.tasks[i].checked == true) this.countTasksCompleted++;
+          if(this.tasks[i].isFavorite == true) this.countTasksFavorite++;
+          this.tasks[i].checked == true && this.tasks[i].isFavorite == true? this.countFavTasksCompleted++ : null
         }
 
         if (response && response.length != 0) {
@@ -62,6 +84,8 @@ export class MyDayTasksListComponent implements OnInit, OnDestroy {
         }
 
         this.currentTasks = this.tasks.length - this.countTasksCompleted;
+        this.currentFavoriteTasks = this.countTasksFavorite - this.countFavTasksCompleted;
+
         this.updateTasksNumbers()
       },
         (error: AppError) => {
@@ -79,7 +103,7 @@ export class MyDayTasksListComponent implements OnInit, OnDestroy {
     if (taskDec.value == "") {
       return
     } else {
-      let inputTask = { "description": taskDec.value, "checked": false };
+      let inputTask = { "description": taskDec.value, "checked": false, "isFavorite": false };
       taskDec.value = "";
       this.currentTasks = this.tasks.length - this.countTasksCompleted;
       this.currentTasks++;
@@ -111,9 +135,21 @@ export class MyDayTasksListComponent implements OnInit, OnDestroy {
     this.tasks.splice(index, 1);
     if (task.checked == true){
       this.countTasksCompleted--;
-    }else{
+    }
+
+    if(task.checked == false && task.isFavorite == true){
+      this.countTasksFavorite--;
+    }
+
+    if(task.checked == false){
       this.currentTasks--;
     }
+
+    if(task.isFavorite == true && task.checked == false){
+      this.currentFavoriteTasks--;
+    }
+
+
 
     this.updateTasksNumbers()
 
@@ -128,8 +164,10 @@ export class MyDayTasksListComponent implements OnInit, OnDestroy {
 
   updateTasksNumbers(){
     this.taskService.changeCompletedTasks({
-      completedTasks: this.countTasksCompleted,
-      currentTasks: this.currentTasks
+      completedTasks: this.countFavTasksCompleted,
+      currentTasks: this.currentTasks,
+      currentFavoriteTasks: this.currentFavoriteTasks,
+      favoriteTasks: this.countTasksFavorite
     })
   }
 
