@@ -1,7 +1,9 @@
   <div class="initMessageContainer" *ngIf="isEmpty || isFavouriteTasksEmpty">
       <div class="initMessage">
-        <img src="../../assets/imgs/calender.png">
+        <img *ngIf="isEmpty" src="../../assets/imgs/calender.png">
+        <img *ngIf="isFavouriteTasksEmpty" src="../../assets/imgs/star.png">
         <h2>Foucs on your day</h2>
-        <p>Get things done with My Day, a list that refreshes everyday</p>
+        <p *ngIf="isEmpty">Get things done with My Day, a list that refreshes everyday</p>
+        <p *ngIf="isFavouriteTasksEmpty">Get things done with Important, a list that refreshes everyday</p>
       </div>
   </div>

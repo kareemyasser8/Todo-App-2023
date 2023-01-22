@@ -30,7 +30,8 @@ export class FavouriteListComponent implements OnInit {
     task.checked = !task.checked
     this.playSound();
     this.countFavTasksCompleted++;
-    this.currentTasks = this.fullTasksSize - this.countFavTasksCompleted;
+    this.countTasksCompleted++;
+    this.currentTasks = this.fullTasksSize - this.countTasksCompleted;
     this.currentFavoriteTasks = this.countTasksFavorite - this.countFavTasksCompleted;
 
     this.updateTasksNumbers()
@@ -87,13 +88,18 @@ export class FavouriteListComponent implements OnInit {
     task.isFavorite = !task.isFavorite;
     if(task.isFavorite == false){
       this.favouriteTasks.splice(index,1);
-      this.taskService.update(task).subscribe(null);
+      this.serviceSubscription = this.taskService.update(task).subscribe(null);
       this.countTasksFavorite--;
       (task.isFavorite == false && task.checked == true)? this.countFavTasksCompleted-- : null;
       (task.isFavorite == false && task.checked == true)? this.countTasksFavorite-- : null;
       (task.isFavorite == false && task.checked == false)? this.currentFavoriteTasks-- : null;
       this.updateTasksNumbers();
     }
+
+    if (this.currentFavoriteTasks == 0) {
+      this.favouriteTasksEmpty = true;
+    }
+
   }
 
   deleteTask(task){
@@ -105,7 +111,7 @@ export class FavouriteListComponent implements OnInit {
     (task.isFavorite == true && task.checked == false)? this.currentFavoriteTasks-- : null;
     (task.isFavorite == true && task.checked == false)? this.currentTasks-- : null;
 
-    this.taskService.delete(task).subscribe((response) => {
+    this.serviceSubscription = this.taskService.delete(task).subscribe((response) => {
       if (this.currentFavoriteTasks == 0) {
         this.favouriteTasksEmpty = true;
       }
@@ -143,27 +149,6 @@ export class FavouriteListComponent implements OnInit {
       )
     }
   }
-
-
-  // deleteTask(task: any) {
-  //   let index = this.tasks.indexOf(task);
-  //   this.tasks.splice(index, 1);
-  //   if (task.checked == true){
-  //     this.countTasksCompleted--;
-  //   }else{
-  //     this.currentTasks--;
-  //   }
-
-  //   this.updateTasksNumbers()
-
-  //   this.serviceSubscription = this.taskService.delete(task).subscribe(
-  //     (response) => {
-  //       if (this.tasks.length == 0) {
-  //         this.tasksEmpty = true;
-  //       }
-  //     }
-  //   )
-  // }
 
   updateTasksNumbers(){
     this.taskService.changeCompletedTasks({

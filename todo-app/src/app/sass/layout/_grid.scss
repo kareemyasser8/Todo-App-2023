@@ -7,6 +7,34 @@
   flex-direction: row;
 }
 
+
+@media (variables.$maxSmall) {
+  .app-container{
+    flex-direction: column;
+    // border: 1px solid red;
+
+    .options-container{
+      width: 100%;
+      display: flex;
+      // border: 1px solid green;
+    }
+
+    .app-right-container{
+      grid-template-rows: 0.3fr 1% 1fr;
+    }
+
+    .categoryContainer{
+      // border: 1px solid red;
+      margin-top: 15px;
+    }
+
+
+  }
+
+
+
+}
+
 .app-right-container{
   max-height: 100vh;
   display: grid;
